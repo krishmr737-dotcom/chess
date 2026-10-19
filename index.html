@@ -53,7 +53,8 @@ a{color:inherit}.wrap{width:min(1120px,92%);margin:auto}.nav{display:flex;align-
             <div class="field"><label for="name">Full name *</label><input id="name" name="name" required maxlength="80" autocomplete="name" placeholder="Your name"></div>
             <div class="field"><label for="username">Chess.com username *</label><input id="username" name="username" required maxlength="50" placeholder="e.g. knight_player"></div>
             <div class="field full"><label for="email">Email address *</label><input id="email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="you@example.com"></div>
-            <div class="field full"><button class="btn btn-primary" id="submitBtn" type="submit">Submit registration →</button><div class="hint">By registering, you agree to follow Chess.com fair-play rules and the tournament organizer's schedule.</div></div>
+            <div class="field full"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:500"><input id="agreeRules" name="agreeRules" type="checkbox" required style="width:auto;margin-top:3px;flex:0 0 auto"><span>I have read and agree to the tournament rules: double round-robin, 10+0 time control, win = 2 / draw = 1 / loss = 0, fair play, and completing matches by their deadlines. I understand that unplayed matches or rule violations may result in a forfeit or elimination after organizer review.</span></label></div>
+            <div class="field full"><button class="btn btn-primary" id="submitBtn" type="submit">Submit registration →</button><div class="hint">A confirmation email will be sent to the email address you enter. Please check your inbox and spam folder.</div></div>
           </div>
           <div class="formmsg" id="formMessage" role="status" aria-live="polite"></div>
         </form>
@@ -111,12 +112,12 @@ form.addEventListener("submit",async ev=>{
   ev.preventDefault();
   if(!configured()){msg.className="formmsg err";msg.textContent="The website is not connected yet. Organizer: add the Apps Script URL in index.html and redeploy.";return;}
   submitBtn.disabled=true;submitBtn.textContent="Submitting…";msg.className="formmsg";msg.textContent="";
-  const payload={name:form.name.value.trim(),username:form.username.value.trim(),email:form.email.value.trim()};
+  const payload={name:form.name.value.trim(),username:form.username.value.trim(),email:form.email.value.trim(),agreeRules:document.getElementById("agreeRules").checked};
   try{
     const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
     const data=await r.json();
     if(!data.ok) throw new Error(data.error||"Registration failed");
-    msg.className="formmsg ok";msg.textContent=data.message||"Registration successful! You are on the player list.";
+    msg.className="formmsg "+(data.emailSent===false?"err":"ok");msg.textContent=data.message||"Registration successful! Check your email for confirmation.";
     form.reset();await loadLeaderboard();
   }catch(err){msg.className="formmsg err";msg.textContent="Could not confirm registration. Check your connection or contact the organizer. Details: "+err.message;}
   finally{submitBtn.disabled=false;submitBtn.textContent="Submit registration →";}
