@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>Chess Premier League | College Edition</title>
+<style>
+:root{--bg:#0b1120;--panel:#111c30;--panel2:#16233a;--gold:#f2c66d;--gold2:#ffe3a0;--text:#f5f7fb;--muted:#aab5c8;--line:#26344d;--green:#74d7a1;--red:#ff8f8f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 80% 0%,#1c2b47 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+a{color:inherit}.wrap{width:min(1120px,92%);margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.4px}.logo{width:42px;height:42px;display:grid;place-items:center;background:linear-gradient(145deg,var(--gold2),var(--gold));color:#152033;border-radius:13px;font-size:24px}.navlinks{display:flex;gap:22px;align-items:center}.navlinks a{text-decoration:none;color:var(--muted);font-size:14px}.navlinks a:hover{color:var(--gold2)}
+.hero{padding:64px 0 40px;display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,66px);line-height:1.02;letter-spacing:-2px;margin:14px 0 18px}.hero h1 span{color:var(--gold)}.hero p{max-width:620px;color:var(--muted);font-size:17px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}.btn-primary{background:var(--gold);color:#152033}.btn-primary:hover{background:var(--gold2)}.btn-secondary{background:transparent;border:1px solid #45536b;color:var(--text)}.hero-card{background:linear-gradient(150deg,#1b2b45,#101a2d);border:1px solid #35445c;border-radius:24px;padding:25px;box-shadow:0 24px 60px #0004}.hero-card .chess{font-size:76px;text-align:center;color:var(--gold);line-height:1.2}.hero-card h3{text-align:center;margin:10px 0 4px}.hero-card p{text-align:center;font-size:14px;margin:0 auto}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{background:#0b1425;border:1px solid var(--line);padding:13px 10px;border-radius:13px;text-align:center}.stat b{display:block;color:var(--gold);font-size:20px}.stat span{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+.section{padding:35px 0 45px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}.section h2{font-size:clamp(25px,3vw,34px);margin:5px 0}.sub{color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:23px}.card h3{margin:0 0 7px}.card p{color:var(--muted)}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:13px;color:#d8dfeb;font-weight:700}input{width:100%;background:#0a1323;border:1px solid #33425a;border-radius:10px;padding:12px 13px;color:var(--text);font:inherit}input:focus{outline:2px solid #f2c66d66;border-color:var(--gold)}.hint{font-size:12px;color:var(--muted)}.formmsg{margin-top:12px;font-size:14px}.formmsg.ok{color:var(--green)}.formmsg.err{color:var(--red)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:15px;background:var(--panel)}table{width:100%;border-collapse:collapse;min-width:650px}th,td{text-align:left;padding:14px 15px;border-bottom:1px solid var(--line);font-size:14px}th{background:#1a2941;color:var(--gold2);font-size:11px;text-transform:uppercase;letter-spacing:1px}tbody tr:nth-child(even){background:#ffffff04}tbody tr:hover{background:#f2c66d0b}tbody tr:last-child td{border-bottom:0}.rank{font-weight:900;color:var(--gold)}.player{font-weight:750}.pill{font-size:11px;border:1px solid #3c4c65;color:var(--muted);padding:4px 8px;border-radius:99px}.empty{text-align:center;padding:28px;color:var(--muted)}.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.rule{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px}.rule .ico{font-size:23px}.rule h3{margin:8px 0 4px;font-size:16px}.rule p{margin:0;color:var(--muted);font-size:13px}.footer{border-top:1px solid var(--line);padding:25px 0 35px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.notice{border:1px solid #4b412a;background:#2a2418;color:#f5dda8;border-radius:12px;padding:12px 14px;font-size:13px;margin-top:15px}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:42px}.hero-card{max-width:460px}.grid{grid-template-columns:1fr}.rules{grid-template-columns:1fr}.navlinks{gap:11px}.navlinks a{font-size:12px}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.section-head{align-items:start;flex-direction:column}.hero h1{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <nav class="nav">
+    <div class="brand"><div class="logo">♟</div><div>CHESS PREMIER LEAGUE<small style="display:block;color:var(--muted);font-size:10px;letter-spacing:1.5px;font-weight:650">COLLEGE EDITION</small></div></div>
+    <div class="navlinks"><a href="#leaderboard">Leaderboard</a><a href="#rules">Rules</a><a href="#register">Register</a></div>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">One class. One champion.</div>
+      <h1>Make your move.<br><span>Own the board.</span></h1>
+      <p>Your class chess league, played on Chess.com. Register, challenge your classmates, and climb the live points table.</p>
+      <div class="actions"><a class="btn btn-primary" href="#register">♟ Register for free</a><a class="btn btn-secondary" href="#leaderboard">View leaderboard ↓</a></div>
+      <div class="notice">Tournament will begin soon.</div>
+    </div>
+    <aside class="hero-card">
+      <div class="chess">♚</div><h3>The race to the top</h3><p>Every game counts. Every point matters.</p>
+      <div class="stats"><div class="stat"><b id="playerCount">—</b><span>Players</span></div><div class="stat"><b>2</b><span>Legs per opponent</span></div><div class="stat"><b id="gameCount">—</b><span>Games recorded</span></div></div>
+    </aside>
+  </section>
+
+  <section class="section" id="leaderboard">
+    <div class="section-head"><div><div class="eyebrow">Live standings</div><h2>League table</h2><p class="sub">Rankings refresh from the tournament spreadsheet.</p></div><button class="btn btn-secondary" id="refreshBtn" type="button">↻ Refresh</button></div>
+    <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Player</th><th>MP</th><th>W</th><th>D</th><th>L</th><th>Points</th></tr></thead><tbody id="leaderboardBody"><tr><td colspan="7" class="empty">Connect the Google Apps Script URL to load the live leaderboard.</td></tr></tbody></table></div>
+    <p class="hint" id="updatedAt" style="margin-top:10px">Leaderboard data will appear here once setup is complete.</p>
+  </section>
+
+  <section class="section" id="register">
+    <div class="section-head"><div><div class="eyebrow">Join the league</div><h2>Player registration</h2><p class="sub">Use the same Chess.com username you will play with.</p></div><span class="pill">FREE REGISTRATION</span></div>
+    <div class="grid">
+      <div class="card">
+        <h3>Register your details</h3><p>Submitted details are saved to the organizer's Google Sheet. Your email is not shown on the public leaderboard.</p>
+        <form id="registrationForm">
+          <div class="formgrid">
+            <div class="field"><label for="name">Full name *</label><input id="name" name="name" required maxlength="80" autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label for="username">Chess.com username *</label><input id="username" name="username" required maxlength="50" placeholder="e.g. knight_player"></div>
+            <div class="field full"><label for="email">Email address *</label><input id="email" name="email" type="email" required maxlength="120" autocomplete="email" placeholder="you@example.com"></div>
+            <div class="field full"><button class="btn btn-primary" id="submitBtn" type="submit">Submit registration →</button><div class="hint">By registering, you agree to follow Chess.com fair-play rules and the tournament organizer's schedule.</div></div>
+          </div>
+          <div class="formmsg" id="formMessage" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3>What happens next?</h3>
+        <p><strong style="color:var(--text)">01 — Register</strong><br>Submit your name, email and Chess.com username.</p>
+        <p><strong style="color:var(--text)">02 — Play both legs</strong><br>Each pair plays twice, swapping colours where possible.</p>
+        <p><strong style="color:var(--text)">03 — Climb the table</strong><br>Wins, draws and losses are recorded by the organizer.</p>
+        <p><strong style="color:var(--text)">04 — Become champion</strong><br>The player with the most points tops the league table.</p>
+        <a class="btn btn-secondary" href="https://www.chess.com/" target="_blank" rel="noopener">Open Chess.com ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="rules">
+    <div class="section-head"><div><div class="eyebrow">Know the format</div><h2>League rules</h2></div></div>
+    <div class="rules">
+      <div class="rule"><div class="ico">🔁</div><h3>Double round robin</h3><p>Every player faces each opponent twice. For N players, each player has 2 × (N − 1) games.</p></div>
+      <div class="rule"><div class="ico">🏆</div><h3>Points system</h3><p>Win = 2 points · Draw = 1 point · Loss = 0 points.</p></div>
+      <div class="rule"><div class="ico">🤝</div><h3>Fair play</h3><p>Agree on match deadlines and time control. No outside assistance during games.</p></div>
+    </div>
+  </section>
+</main>
+<footer class="wrap footer"><span>♟ Chess Premier League · College Edition</span><span>Unofficial student-organized event · Not affiliated with Chess.com</span></footer>
+<script>
+/*
+  SETUP: Replace this with the deployed Google Apps Script web app URL.
+  Example format: https://script.google.com/macros/s/DEPLOYMENT_ID/exec
+*/
+const API_URL = "https://script.google.com/macros/s/AKfycbwDRpTGGiX4a3F9md6k4knK6E5Cqi387FKjgSWls15iH3585PR5ceQtx6yh7-4Kq65s/exec";
+const tbody = document.getElementById("leaderboardBody");
+const form = document.getElementById("registrationForm");
+const msg = document.getElementById("formMessage");
+const submitBtn = document.getElementById("submitBtn");
+
+function configured(){return API_URL.startsWith("https://script.google.com/") && API_URL.endsWith("/exec");}
+function esc(s){return String(s ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function loadLeaderboard(){
+  if(!configured()){tbody.innerHTML='<tr><td colspan="7" class="empty">Setup needed: paste your deployed Apps Script URL into index.html.</td></tr>';return;}
+  tbody.innerHTML='<tr><td colspan="7" class="empty">Loading leaderboard…</td></tr>';
+  try{
+    const r=await fetch(API_URL+"?action=leaderboard",{cache:"no-store"});
+    const data=await r.json();
+    if(!data.ok) throw new Error(data.error||"Could not load leaderboard");
+    const players=data.leaderboard||[];
+    document.getElementById("playerCount").textContent=(data.playerCount ?? players.length);
+    document.getElementById("gameCount").textContent=(data.gameCount ?? 0);
+    if(!players.length){tbody.innerHTML='<tr><td colspan="7" class="empty">No players registered yet. Be the first to register!</td></tr>';}
+    else tbody.innerHTML=players.map((p,i)=>`<tr><td class="rank">${i===0?"♛":i+1}</td><td class="player">${esc(p.username)}</td><td>${p.mp||0}</td><td>${p.w||0}</td><td>${p.d||0}</td><td>${p.l||0}</td><td><strong>${p.pts||0}</strong></td></tr>`).join("");
+    document.getElementById("updatedAt").textContent="Last refreshed: "+new Date().toLocaleString();
+  }catch(err){tbody.innerHTML=`<tr><td colspan="7" class="empty">Could not load data. Check the Apps Script deployment and permissions. (${esc(err.message)})</td></tr>`;}
+}
+form.addEventListener("submit",async ev=>{
+  ev.preventDefault();
+  if(!configured()){msg.className="formmsg err";msg.textContent="The website is not connected yet. Organizer: add the Apps Script URL in index.html and redeploy.";return;}
+  submitBtn.disabled=true;submitBtn.textContent="Submitting…";msg.className="formmsg";msg.textContent="";
+  const payload={name:form.name.value.trim(),username:form.username.value.trim(),email:form.email.value.trim()};
+  try{
+    const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),redirect:"follow"});
+    const data=await r.json();
+    if(!data.ok) throw new Error(data.error||"Registration failed");
+    msg.className="formmsg ok";msg.textContent=data.message||"Registration successful! You are on the player list.";
+    form.reset();await loadLeaderboard();
+  }catch(err){msg.className="formmsg err";msg.textContent="Could not confirm registration. Check your connection or contact the organizer. Details: "+err.message;}
+  finally{submitBtn.disabled=false;submitBtn.textContent="Submit registration →";}
+});
+document.getElementById("refreshBtn").addEventListener("click",loadLeaderboard);
+loadLeaderboard();
+</script>
+</body>
+</html>
